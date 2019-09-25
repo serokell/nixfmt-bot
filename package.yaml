@@ -72,8 +72,8 @@ library:
   build-tools:
   - autoexporter
   dependencies:
-  - github-webhooks
   - aeson-options
+  - github-webhooks
   - http-client
   - http-client-tls
   - mtl

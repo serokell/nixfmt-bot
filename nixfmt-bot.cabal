@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 85a33b1d16127f63887829b8369cb25e65c0ebe02de58a1941a943f37473dd8f
+-- hash: ecca28db89a74c852027602be2ff7e6be07a247f8e76d14f5c4a918f80540926
 
 name:           nixfmt-bot
 version:        0.1.0.0
@@ -24,6 +24,7 @@ extra-source-files:
 
 library
   exposed-modules:
+      Nixfmt.GitHubEvent
       Nixfmt.GitHubKey
       Nixfmt.Server
       Nixfmt.ServerAPI
