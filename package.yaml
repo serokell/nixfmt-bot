@@ -1,0 +1,102 @@
+name:                nixfmt-bot
+version:             0.1.0.0
+synopsis:            Nixfmt bot
+description:         Nixfmt bot formats all your code in PR where you summoned him.
+homepage:            https://github.com/serokell/nixfmt-bot
+bug-reports:         https://github.com/serokell/nixfmt-bot/issues
+license:             MPL-2.0
+license-file:        LICENSE
+author:              Ilya Peresadin
+maintainer:          pva@serokell.io
+copyright:           2019 Serokell, 2019 Ilya Peresadin
+category:            Development
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+default-extensions:
+- AllowAmbiguousTypes
+- BangPatterns
+- ConstraintKinds
+- DataKinds
+- DefaultSignatures
+- DeriveDataTypeable
+- DeriveGeneric
+- DerivingStrategies
+- EmptyCase
+- FlexibleContexts
+- FlexibleInstances
+- FunctionalDependencies
+- GeneralizedNewtypeDeriving
+- LambdaCase
+- MonadFailDesugaring
+- MultiParamTypeClasses
+- MultiWayIf
+- NamedFieldPuns
+- OverloadedStrings
+- OverloadedLabels
+- PatternSynonyms
+- RankNTypes
+- RecordWildCards
+- ScopedTypeVariables
+- StandaloneDeriving
+- TemplateHaskell
+- TupleSections
+- TypeFamilies
+- TypeOperators
+- UndecidableInstances
+- ViewPatterns
+- TypeApplications
+
+dependencies:
+- base-noprelude >= 4.9 && < 5
+- bytestring
+- loot-prelude
+- universum
+- microlens-platform
+
+ghc-options:
+# workaround for building with -Werror on macos+clang
+- -optP-Wno-nonportable-include-path
+- -Wall
+- -fno-warn-orphans
+- -Widentities
+- -Wincomplete-record-updates
+- -Werror
+
+library:
+  source-dirs: src
+  build-tools:
+  - autoexporter
+  dependencies:
+  - github-webhooks
+  - aeson-options
+  - http-client
+  - http-client-tls
+  - mtl
+  - text
+  - time
+  - unliftio
+  - servant ^>= 0.16.2
+  - servant-server ^>= 0.16.2
+  - servant-github-webhook ^>= 0.4.2.0
+  - github-webhooks ^>= 0.11.0
+  - wai
+  - warp
+  - yaml
+
+executables:
+  nixfmt-bot:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aeson
+    - nixfmt-bot
+    - optparse-applicative
