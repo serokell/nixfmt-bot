@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.32.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ecca28db89a74c852027602be2ff7e6be07a247f8e76d14f5c4a918f80540926
+-- hash: cc78ba2c8712ab7f740a9f43eaf374f5fed02980cb7eb73c25a73f7f9ed8cb45
 
 name:           nixfmt-bot
 version:        0.1.0.0
@@ -42,6 +42,7 @@ library
     , base-noprelude >=4.9 && <5
     , bytestring
     , github-webhooks >=0.11.0 && <0.12
+    , hpack
     , http-client
     , http-client-tls
     , loot-prelude

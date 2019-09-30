@@ -87,6 +87,7 @@ library:
   - wai
   - warp
   - yaml
+  - hpack
 
 executables:
   nixfmt-bot:
