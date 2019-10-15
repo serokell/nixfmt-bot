@@ -1,0 +1,3 @@
+steps:
+  - command: nix-build -A nixfmt-bot.components.exes.nixfmt-bot
+    label: build
