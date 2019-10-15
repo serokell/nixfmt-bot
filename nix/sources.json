@@ -1,0 +1,26 @@
+{
+    "haskell.nix": {
+        "branch": "master",
+        "description": "Alternative Haskell Infrastructure for Nixpkgs",
+        "homepage": "https://input-output-hk.github.io/haskell.nix",
+        "owner": "input-output-hk",
+        "repo": "haskell.nix",
+        "rev": "02617b0928b976c2e56aee1f66cfdc5f39e73365",
+        "sha256": "1kykkpr7z0ycxs2m273wlwwb93s42pb2iz7pi8q742n0zkn76cw0",
+        "type": "tarball",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/02617b0928b976c2e56aee1f66cfdc5f39e73365.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixos-unstable-small",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs-channels",
+        "rev": "8d3392ee6af3cacd6a0f2e6905e38504a14494ca",
+        "sha256": "0i3w0agr35i53gzildngxrq3k6f962ll0kfz18bjfb8vi4bcs33w",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/8d3392ee6af3cacd6a0f2e6905e38504a14494ca.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
