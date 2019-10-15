@@ -1,0 +1,9 @@
+steps:
+  - command: nix-build -A nixfmt-bot.components.exes.nixfmt-bot
+    label: build
+
+  - wait
+
+  - label: deploy
+    command: bk-nixos-deploy -f . nixfmt-bot
+    branches: "master production"

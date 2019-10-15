@@ -8,4 +8,3 @@
 cabal.project.local
 cabal.project.local~
 /.nix-tools.cache
-/.plan.nix/
