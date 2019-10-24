@@ -48,9 +48,13 @@ $ niv update
 ## Running 
 
 The bot would try to read a few environment variables: 
+
 $KEY -- secret key from the webhook configuration 
+
 $PORT -- listening port 
+
 $GITHUB_LOGIN -- login for github
+
 $GIHUB_PASSWORD -- password 
 
 The bot would react on the comments with "@nixfmt" text in any PR which is connected to an issue on the repository.
