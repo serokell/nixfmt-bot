@@ -1,9 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Nixfmt.GitHubRequests where
+module Nixfmt.GitHubRequests
+       ( getPRInfo
+       , makeNewPR
+       ) where
 
---import GitHub.Data.Webhooks.Payload )
 import GitHub.Endpoints.PullRequests
+  ( Auth(..), CreatePullRequest(..), Error(..),IssueNumber(..)
+  , Owner(..), PullRequest(..), Repo(..), URL(..), createPullRequest, pullRequest')
 import GitHub.Data.Name (Name(..))
 
 import Text.Megaparsec hiding (many)
@@ -26,7 +30,13 @@ getPRInfo mAuth (URL url) = case runParser parsePRUrl "" url of
     Right (userName, repoName, prNumber) ->
       pullRequest' mAuth (N userName) (N repoName) (IssueNumber prNumber)
 
-makeNewPR :: Maybe Auth -> Text -> Text -> Name Owner -> Name Repo -> IO (Either Error PullRequest)
+makeNewPR ::
+     Maybe Auth
+  -> Text
+  -> Text
+  -> Name Owner
+  -> Name Repo
+  -> IO (Either Error PullRequest)
 makeNewPR mAuth baseBranch newBranch owner repo =
     let createPR = CreatePullRequest pRTitle pRBody newBranch baseBranch
     in case mAuth of

@@ -9,10 +9,10 @@ import Servant.Server (Handler)
 import Servant.API.Generic (ToServant)
 import Servant.Server.Generic (AsServer, genericServer)
 
-import GitHub.Auth
+import GitHub.Auth (Auth(..))
 import GitHub.Data.URL (URL(..))
 import GitHub.Data.Definitions (IssueNumber(..))
-import GitHub.Data.PullRequests
+import GitHub.Data.PullRequests (pullRequestNumber)
 
 import Nixfmt.ServerAPI (NixfmtWebhooks (..))
 import Nixfmt.GitHubEvent

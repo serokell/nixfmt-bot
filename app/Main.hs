@@ -2,7 +2,7 @@ module Main where
 
 import qualified Data.ByteString.Char8 as C8
 import System.Environment (lookupEnv)
-import Text.Read
+import Text.Read (read)
 
 import Nixfmt.Server
 import Nixfmt.GitHubKey

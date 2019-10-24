@@ -3,14 +3,16 @@
 {-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
 
-module Nixfmt.Local.Git where
+module Nixfmt.Local.Git (processPullRequest) where
 
 import GitHub.Endpoints.PullRequests
-import GitHub.Data.Name
-import Shelly
+       ( Auth(..), Owner(..), PullRequest(..)
+       , PullRequestCommit(..), Repo(..), SimpleOwner(..), URL(..))
+import GitHub.Data.Name(Name(..))
+import Shelly (Sh, cd, rm, rm_rf, run, shelly)
 import qualified Data.Text as T
 import Data.Text.Encoding as E
-import Text.Megaparsec
+import Text.Megaparsec (errorBundlePretty, runParser)
 
 import Nixfmt.Local.Parser
 
