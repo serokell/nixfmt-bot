@@ -15,4 +15,4 @@ data NixfmtWebhooks route = NixfmtWebhooks
       :> Post '[JSON] ()
     } deriving (Generic)
 
-type NixfmtWebhooksAPI = "hook" :> ToServant NixfmtWebhooks AsApi
+type NixfmtWebhooksAPI = ToServant NixfmtWebhooks AsApi

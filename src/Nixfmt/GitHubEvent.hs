@@ -16,7 +16,7 @@ isPullRequestEvent :: IssueCommentEvent -> Bool
 isPullRequestEvent = endsWith "pull" . getUrl . whIssueHtmlUrl . evIssueCommentIssue
 
 isBotMention :: Text -> Bool
-isBotMention = ("@nixfmt-bot" == )
+isBotMention = ("@nixfmt" == )
 
 isCreatedEvent :: IssueCommentEvent -> Bool
 isCreatedEvent ev = evIssueCommentAction ev == IssueCommentCreatedAction
