@@ -11,7 +11,7 @@ import Network.Wai (Application)
 import Servant.Server (Context (..), serveWithContext)
 import Network.Wai.Handler.Warp (run)
 
-import GitHub.Auth
+import GitHub.Auth (Auth(..))
 
 import Nixfmt.GitHubKey
 import Nixfmt.ServerAPI
