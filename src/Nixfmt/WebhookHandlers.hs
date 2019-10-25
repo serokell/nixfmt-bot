@@ -19,7 +19,7 @@ import Nixfmt.GitHubEvent
 import Nixfmt.GitHubRequests
 import Nixfmt.Local.Git
 
-import Control.Concurrent.Async
+import Control.Concurrent.Async (async)
 
 type NixfmtHandlers = ToServant NixfmtWebhooks AsServer
 
