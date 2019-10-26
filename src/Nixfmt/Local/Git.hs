@@ -33,6 +33,14 @@ processPullRequest ::
   -> Maybe Auth
   -> IO (Text, Text, Name Owner, Name Repo)
 processPullRequest pr mAuth = do
+    let originalRepo = fromMaybe (error "Can't obtain the original repository") $
+                          pullRequestCommitRepo . pullRequestHead $ pr
+    let prRepo       = fromMaybe (error "Can't obtain the repository") $
+                          pullRequestCommitRepo . pullRequestBase $ pr
+    let theSameRepo  = originalRepo == prRepo
+    let (URL baseRepoLink) = fromMaybe (error "Can't obtain link to the original repository") $
+                                repoCloneUrl $ prRepo
+    let mOriginalRepoURL = if theSameRepo then Nothing else Just baseRepoLink
     let prBranch = pullRequestCommitRef . pullRequestHead $ pr
     let baseBranch = pullRequestCommitRef . pullRequestBase $ pr
     let (URL prLink) = fromMaybe (error "Can't obtain link to the repository") $
@@ -53,9 +61,10 @@ processPullRequest pr mAuth = do
         cd $ toString rName
         _ <- run "git" ["checkout", prBranch]
         -- get list of changed files and filter only *.nix files. Also make full paths from these names.
-        fileList <- processFileList prBranch baseBranch ("/tmp/" <> rName <> "/")
+        (mRepo, fileList) <- processFileList prBranch baseBranch ("/tmp/" <> rName <> "/") mOriginalRepoURL
+        let baseRepo = fromMaybe "origin" mRepo
         -- for each file get numbers of changed lines in format (file,[(first line, nuber of changed lines)]).
-        diffLines <- mapM (processDiffs prBranch baseBranch) fileList
+        diffLines <- mapM (processDiffs prBranch baseBranch baseRepo) fileList
         -- Check every file if number of added lines is more or equal than 0.5 * number of lines in the file.
         -- If it is true, then format the whole file in place and remove it from list
         checkedDiffLines <- catMaybes <$> mapM checkAndFormatWholeFileInPlace diffLines
@@ -73,21 +82,31 @@ processFileList ::
     Text
  -> Text
  -> Text
- -> Sh [Text]
-processFileList branch baseBranch path = do
-  fileStatus <- run "git" ["diff", "--name-status", ("origin/" <> baseBranch <> "..origin/" <> branch)]
+ -> Maybe Text
+ -> Sh (Maybe Text, [Text])
+processFileList branch baseBranch path mOldRepoLink = do
+  fileStatus <- case mOldRepoLink of
+    Nothing   -> run "git" ["diff", "--name-status", ("origin/" <> baseBranch <> "..origin/" <> branch)]
+    Just link -> do
+                   _ <- run "git" ["remote", "add", "repo2", link]
+                   _ <- run "git" ["fetch", "repo2"]
+                   run "git" ["diff", "--name-status", ("repo2/" <> baseBranch <> "..origin/" <> branch)]
   case runParser (parseFiles path) "" fileStatus of
       Left e -> error $ toText $ errorBundlePretty e
-      Right files -> return $ filter (T.isSuffixOf ".nix") files
+      Right files ->
+        case mOldRepoLink of
+          Nothing -> return $ (Nothing, filter (T.isSuffixOf ".nix") files)
+          Just _  -> return $ (Just "repo2", filter (T.isSuffixOf ".nix") files)
 
 -- | Run "git diff" command and parse its result.
 processDiffs ::
      Text
   -> Text
   -> Text
+  -> Text
   -> Sh (Text, [(Int, Int)])
-processDiffs branch baseBranch file = do
-    diff <- silently $ run "git" ["diff", "-U0" , ("origin/" <> baseBranch <> "..origin/" <> branch), "--", file]
+processDiffs branch baseBranch repo file = do
+    diff <- silently $ run "git" ["diff", "-U0" , (repo <> "/" <> baseBranch <> "..origin/" <> branch), "--", file]
     case runParser parseDiff "" diff of
         Left e -> error $ toText $ errorBundlePretty e
         Right diffs -> return (file, diffs)
@@ -97,6 +116,7 @@ checkAndFormatWholeFileInPlace f@(tf@(toString -> file), changedLines) = do
    liftIO $ putTextLn $ "Checking file " <> tf
    numberOfLinesInFile <- length . T.split (=='\n') <$> readFile file
    let numberOfChangedLines = sum $ snd <$> (changedLines)
+   liftIO $ putTextLn $ (show numberOfChangedLines) <> " .. " <> (show numberOfLinesInFile)
    if numberOfChangedLines >= numberOfLinesInFile `div` 2
    then do
       liftIO $ putTextLn $ "Formatting the whole file " <> tf
