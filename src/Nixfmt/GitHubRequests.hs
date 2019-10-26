@@ -19,10 +19,10 @@ type UserName = Text
 type RepoName = Text
 
 pRTitle :: Text
-pRTitle = "Nix formatter bot"
+pRTitle = "Format code automatically"
 
 pRBody :: Text
-pRBody = "This PR had been made automatically by nixfmt-bot. It contains formatted diffs from the base pull request."
+pRBody = ""
 
 getPRInfo :: Maybe Auth -> URL -> IO (Either Error PullRequest)
 getPRInfo mAuth (URL url) = case runParser parsePRUrl "" url of

@@ -46,7 +46,7 @@ processPullRequest pr mAuth = do
             Just _ -> error "Only basic auth method is supported now"
             Nothing -> error "GitHub authentication info should be provided"
     let cloneURLWithAuth = "https://" <> (E.decodeUtf8 user) <> ":" <> (E.decodeUtf8 password) <> "@" <> (T.drop 8 prLink)
-    _ <- (flip finally) (shelly $ rm_rf $ "/tmp/" ++ (toString rName)) $ shelly $ do
+    newBranch <- (flip finally) (shelly $ rm_rf $ "/tmp/" ++ (toString rName)) $ shelly $ do
         -- clone the repo and checkout target branch.
         cd "/tmp"
         _ <- run "git" ["clone", cloneURLWithAuth]
@@ -68,7 +68,7 @@ processPullRequest pr mAuth = do
         -- Move formatted pieces of code back to original files and delete copies.
         mapM_ (\(file,_) -> moveFormattedCodeBack file) checkedDiffLines
         makeNewbranchAndCommit prBranch
-    return (prBranch, prBranch <> "-NixFmtBot",ownerLogin , (N rName))
+    return (prBranch, newBranch, ownerLogin , (N rName))
 
 
 -- | Run "git diff" command and parse its result.
@@ -136,11 +136,15 @@ moveFormattedCodeBack (toString -> file) = do
     writeFile file replaced
     rm tmpFile
 
-makeNewbranchAndCommit :: Text -> Sh ()
+makeNewbranchAndCommit :: Text -> Sh Text
 makeNewbranchAndCommit brName = do
-    let newBranchName = brName <> "-NixFmtBot"
+    _ <- run "git" ["config", "user.name", "nixfmt"]
+    _ <- run "git" ["config", "user.email", "nixfmt@serokell.io"]
+
+    let newBranchName = "nixfmt/" <> brName
     _ <- run "git" ["checkout", "-b", newBranchName]
     _ <- run "git" ["add", "."]
-    _ <- run "git" ["commit", "-m", "Nix formatter bot changes.\n\nFiles were changed by Nix formatter bot."]
+    _ <- run "git" ["commit", "-m", "Format code automatically"]
     _ <- run "git" ["push", "--set-upstream", "origin", newBranchName]
-    return ()
+
+    pure newBranchName
