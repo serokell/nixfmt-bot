@@ -20,6 +20,7 @@ import Nixfmt.GitHubRequests
 import Nixfmt.Local.Git
 
 import Control.Concurrent.Async (async)
+import Control.Exception (handle, throw)
 
 type NixfmtHandlers = ToServant NixfmtWebhooks AsServer
 
@@ -37,7 +38,7 @@ onIssueCommentEvent mAuth _ (_, event@IssueCommentEvent{..})
         putTextLn $ "Issue PR Url: " <> getUrl (whIssueHtmlUrl evIssueCommentIssue)
         let url = getUrl (whIssueHtmlUrl evIssueCommentIssue)
         ePullReq <- liftIO $ getPRInfo mAuth (URL url) -- (whIssueHtmlUrl evIssueCommentIssue)
-        _ <- liftIO $ async $ do
+        _ <- liftIO $ async $ handle (\(e :: SomeException) -> (putTextLn $ show e) >> throw e) $ do
                 (baseBranch, newBranch, owner, repo) <- case ePullReq of
                         Left err -> error $ show err
                         Right pullReq -> processPullRequest pullReq mAuth

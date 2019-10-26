@@ -53,8 +53,7 @@ processPullRequest pr mAuth = do
         cd $ toString rName
         _ <- run "git" ["checkout", prBranch]
         -- get list of changed files and filter only *.nix files. Also make full paths from these names.
-        files <- silently $ run "git" ["diff", "--name-only", ("origin/" <> baseBranch <> "..origin/" <> prBranch)]
-        let fileList = map (\f -> "/tmp/" <> rName <> "/" <> f) $ filter (T.isSuffixOf ".nix") $ T.split (=='\n') files
+        fileList <- processFileList prBranch baseBranch ("/tmp/" <> rName <> "/")
         -- for each file get numbers of changed lines in format (file,[(first line, nuber of changed lines)]).
         diffLines <- mapM (processDiffs prBranch baseBranch) fileList
         -- Check every file if number of added lines is more or equal than 0.5 * number of lines in the file.
@@ -70,6 +69,16 @@ processPullRequest pr mAuth = do
         makeNewbranchAndCommit prBranch
     return (prBranch, newBranch, ownerLogin , (N rName))
 
+processFileList ::
+    Text
+ -> Text
+ -> Text
+ -> Sh [Text]
+processFileList branch baseBranch path = do
+  fileStatus <- run "git" ["diff", "--name-status", ("origin/" <> baseBranch <> "..origin/" <> branch)]
+  case runParser (parseFiles path) "" fileStatus of
+      Left e -> error $ toText $ errorBundlePretty e
+      Right files -> return $ filter (T.isSuffixOf ".nix") files
 
 -- | Run "git diff" command and parse its result.
 processDiffs ::
