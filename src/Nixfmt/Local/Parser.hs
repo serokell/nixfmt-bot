@@ -1,7 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Nixfmt.Local.Parser
-       ( parseDiff
+       ( parseFiles
+       , parseDiff
        , parseFormatted
        , replaceOldFragments) where
 
@@ -42,3 +43,10 @@ replaceOldFragments beginBlock endBlock (txt:txts) = do
     _ <- char '\n'
     newBelow <- M.try $ replaceOldFragments beginBlock endBlock txts
     return $ oldBefore <> txt <> "\n" <> newBelow
+
+parseFiles :: Text -> Parser [Text]
+parseFiles path = many $ M.try $ do
+    _    <- char 'A' <|> char 'M'
+    _    <- space
+    file <- toText <$> manyTill anySingle (char '\n')
+    return $ path <> file
