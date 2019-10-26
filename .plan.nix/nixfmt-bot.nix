@@ -2,19 +2,19 @@ let
   buildDepError = pkg:
     builtins.throw ''
       The Haskell package set does not contain the package: ${pkg} (build dependency).
-      
+
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
       '';
   sysDepError = pkg:
     builtins.throw ''
       The Nixpkgs package set does not contain the package: ${pkg} (system dependency).
-      
+
       You may need to augment the system package mapping in haskell.nix so that it can be found.
       '';
   pkgConfDepError = pkg:
     builtins.throw ''
       The pkg-conf packages does not contain the package: ${pkg} (pkg-conf dependency).
-      
+
       You may need to augment the pkg-conf package mapping in haskell.nix so that it can be found.
       '';
   exeDepError = pkg:
@@ -24,16 +24,16 @@ let
   legacyExeDepError = pkg:
     builtins.throw ''
       The Haskell package set does not contain the package: ${pkg} (executable dependency).
-      
+
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
       '';
   buildToolDepError = pkg:
     builtins.throw ''
       Neither the Haskell package set or the Nixpkgs package set contain the package: ${pkg} (build tool dependency).
-      
+
       If this is a system dependency:
       You may need to augment the system package mapping in haskell.nix so that it can be found.
-      
+
       If this is a Haskell dependency:
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
       '';
@@ -57,20 +57,31 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
       "library" = {
         depends = [
           (hsPkgs."aeson-options" or (buildDepError "aeson-options"))
+          (hsPkgs."async" or (buildDepError "async"))
           (hsPkgs."base-noprelude" or (buildDepError "base-noprelude"))
           (hsPkgs."bytestring" or (buildDepError "bytestring"))
+          (hsPkgs."constraints" or (buildDepError "constraints"))
+          (hsPkgs."directory" or (buildDepError "directory"))
+          (hsPkgs."enclosed-exceptions" or (buildDepError "enclosed-exceptions"))
+          (hsPkgs."github" or (buildDepError "github"))
           (hsPkgs."github-webhooks" or (buildDepError "github-webhooks"))
           (hsPkgs."hpack" or (buildDepError "hpack"))
           (hsPkgs."http-client" or (buildDepError "http-client"))
           (hsPkgs."http-client-tls" or (buildDepError "http-client-tls"))
+          (hsPkgs."http-types" or (buildDepError "http-types"))
+          (hsPkgs."lifted-async" or (buildDepError "lifted-async"))
+          (hsPkgs."lifted-base" or (buildDepError "lifted-base"))
           (hsPkgs."loot-prelude" or (buildDepError "loot-prelude"))
+          (hsPkgs."megaparsec" or (buildDepError "megaparsec"))
           (hsPkgs."microlens-platform" or (buildDepError "microlens-platform"))
           (hsPkgs."mtl" or (buildDepError "mtl"))
           (hsPkgs."servant" or (buildDepError "servant"))
           (hsPkgs."servant-github-webhook" or (buildDepError "servant-github-webhook"))
           (hsPkgs."servant-server" or (buildDepError "servant-server"))
+          (hsPkgs."shelly" or (buildDepError "shelly"))
           (hsPkgs."text" or (buildDepError "text"))
           (hsPkgs."time" or (buildDepError "time"))
+          (hsPkgs."type-equality" or (buildDepError "type-equality"))
           (hsPkgs."universum" or (buildDepError "universum"))
           (hsPkgs."unliftio" or (buildDepError "unliftio"))
           (hsPkgs."wai" or (buildDepError "wai"))
@@ -88,6 +99,7 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
             (hsPkgs."aeson" or (buildDepError "aeson"))
             (hsPkgs."base-noprelude" or (buildDepError "base-noprelude"))
             (hsPkgs."bytestring" or (buildDepError "bytestring"))
+            (hsPkgs."github" or (buildDepError "github"))
             (hsPkgs."loot-prelude" or (buildDepError "loot-prelude"))
             (hsPkgs."microlens-platform" or (buildDepError "microlens-platform"))
             (hsPkgs."nixfmt-bot" or (buildDepError "nixfmt-bot"))

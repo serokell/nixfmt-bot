@@ -45,3 +45,19 @@ Currently pinned packages are:
 ```sh
 $ niv update
 ```
+## Running 
+
+The bot would try to read a few environment variables: 
+
+$KEY -- secret key from the webhook configuration 
+
+$PORT -- listening port 
+
+$GITHUB_LOGIN -- login for github
+
+$GIHUB_PASSWORD -- password 
+
+The bot would react on the comments with "@nixfmt" text in any PR which is connected to an issue on the repository.
+It would create new pull request to the head branch of the pull request where the bot was mentioned. 
+
+One should configure webhooks to mention the bot about issue comments.

@@ -306,6 +306,14 @@
         "simple-sendfile".revision = (((hackage."simple-sendfile")."0.2.28").revisions).default;
         "simple-sendfile".flags.allow-bsd = true;
         "integer-gmp".revision = (((hackage."integer-gmp")."1.0.2.0").revisions).default;
+        "megaparsec".revision = (((hackage."megaparsec")."7.0.5").revisions).default;
+        "parser-combinators".revision = (((hackage."parser-combinators")."1.2.0").revisions).default;
+        "shelly".revision = (((hackage."shelly")."1.9.0").revisions).default;
+        "lifted-base".revision = (((hackage."lifted-base")."0.2.3.12").revisions).default;
+        "lifted-async".revision = (((hackage."lifted-async")."0.10.0.4").revisions).default;
+        "constraints".revision = (((hackage."constraints")."0.11.2").revisions).default;
+        "type-equality".revision = (((hackage."type-equality")."1").revisions).default;
+        "enclosed-exceptions".revision = (((hackage."enclosed-exceptions")."1.0.3").revisions).default;
         };
       compiler = {
         version = "8.6.5";
@@ -319,6 +327,7 @@
           "rts" = "1.0";
           "deepseq" = "1.4.4.0";
           "parsec" = "3.1.13.0";
+          "megaparsec" = "7.0.5";
           "directory" = "1.3.3.0";
           "template-haskell" = "2.14.0.0";
           "containers" = "0.6.0.1";
@@ -329,11 +338,18 @@
           "time" = "1.8.0.2";
           "transformers" = "0.5.6.2";
           "filepath" = "1.4.2.1";
+          "parser-combinators" = "1.2.0";
           "process" = "1.6.5.0";
           "pretty" = "1.1.3.6";
           "ghc-boot-th" = "8.6.5";
           "array" = "0.5.3.0";
           "integer-gmp" = "1.0.2.0";
+          "shelly" = "1.9.0";
+          "lifted-base" = "0.2.3.12";
+          "lifted-async" = "0.10.0.4";
+          "constraints" = "0.11.2";
+          "type-equality" = "1";
+          "enclosed-exceptions" = "1.0.3";
           };
         };
       };

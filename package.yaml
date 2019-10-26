@@ -73,10 +73,16 @@ library:
   - autoexporter
   dependencies:
   - aeson-options
+  - async
+  - directory
+  - github ^>= 0.23
   - github-webhooks
   - http-client
+  - http-types
   - http-client-tls
+  - megaparsec
   - mtl
+  - shelly
   - text
   - time
   - unliftio
@@ -99,5 +105,6 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - aeson
+    - github ^>= 0.23
     - nixfmt-bot
     - optparse-applicative
