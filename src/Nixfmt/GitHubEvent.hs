@@ -10,16 +10,13 @@ import GitHub.Data.Webhooks.Events  (IssueCommentEvent (..), IssueCommentEventAc
 import GitHub.Data.Webhooks.Payload (getUrl, HookIssue (..))
 
 isIssueEvent :: IssueCommentEvent -> Bool
-isIssueEvent = endsWith "issues" . getUrl . whIssueHtmlUrl . evIssueCommentIssue
+isIssueEvent = ("/issues/" `T.isInfixOf`) . getUrl . whIssueHtmlUrl . evIssueCommentIssue
 
 isPullRequestEvent :: IssueCommentEvent -> Bool
-isPullRequestEvent = endsWith "pull" . getUrl . whIssueHtmlUrl . evIssueCommentIssue
+isPullRequestEvent = ("/pull/" `T.isInfixOf`) . getUrl . whIssueHtmlUrl . evIssueCommentIssue
 
 isBotMention :: Text -> Bool
-isBotMention = ("@nixfmt" == )
+isBotMention = ("@nixfmt" `T.isInfixOf`)
 
 isCreatedEvent :: IssueCommentEvent -> Bool
 isCreatedEvent ev = evIssueCommentAction ev == IssueCommentCreatedAction
-
-endsWith :: Text -> Text -> Bool
-endsWith sub s = sub `T.isSuffixOf` T.init (T.dropWhileEnd (/= '/') s)
