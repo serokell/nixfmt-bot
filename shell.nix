@@ -1,6 +1,4 @@
-{ pkgs ? import ./nix {} }: with pkgs;
-
 let
-  hsPkgs = import ./default.nix {};
+  pkgs = import ./default.nix {};
 in
-  hsPkgs.nixfmt-bot.components.all
+  pkgs.shellFor

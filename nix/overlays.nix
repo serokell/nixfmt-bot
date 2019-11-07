@@ -1,8 +1,5 @@
 { sources ? import ./sources.nix }:
-[(self: super: {
-  haskell-nix = (import sources."haskell.nix" { pkgs = self; hackageSourceJSON = ./hackage-src.json; });
-
-
+self: super: {
   /*
   * Run a series of commands only for their exit status, producing an empty
   * closure.
@@ -27,4 +24,4 @@
       exit 1
     fi
   '';
-})]
+}

@@ -1,10 +1,5 @@
 { pkgs ? import ./nix {} }: with pkgs;
-let
-  pkgSet = haskell-nix.mkCabalProjectPkgSet {
-    plan-pkgs = import ./pkgs.nix;
-    pkg-def-extras = [];
-    modules = [];
-  };
-in
-
-pkgSet.config.hsPkgs
+haskell-nix.cabalProject {
+  src = haskell-nix.haskellLib.cleanGit { src = ./.; };
+  ghc = buildPackages.pkgs.haskell.compiler.ghc865;
+}
