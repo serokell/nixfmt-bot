@@ -1,10 +1,11 @@
-{ pkgs ? import ./nix {} }: with pkgs;
+{ pkgs ? import ./nix {} }:
+
 let
-  pkgSet = haskell-nix.mkCabalProjectPkgSet {
-    plan-pkgs = import ./pkgs.nix;
+  pkgSet = pkgs.haskell-nix.mkStackPkgSet {
+    stack-pkgs = import ./pkgs.nix;
     pkg-def-extras = [];
     modules = [];
   };
-in
 
-pkgSet.config.hsPkgs
+in
+  pkgSet.config.hsPkgs

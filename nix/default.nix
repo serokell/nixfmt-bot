@@ -1,7 +1,16 @@
 { sources ? import ./sources.nix }:
 let
-  overlays = import ./overlays.nix { inherit sources; };
+  haskellNixArgs = import sources."haskell.nix";
+
+  pinnedHackageOverlay = self: super: {
+    haskell-nix = super.haskell-nix // {
+      hackageSourceJSON = ./hackage-src.json;
+      stackageSourceJSON = ./stackage-src.json;
+    };
+  };
+
+  haskellNixArgsWithPinnedHackage = haskellNixArgs // { overlays = haskellNixArgs.overlays ++ [ pinnedHackageOverlay ]; };
 
 in
 
-import sources.nixpkgs { inherit overlays; config = {}; }
+import sources.nixpkgs haskellNixArgsWithPinnedHackage
