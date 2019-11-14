@@ -2,7 +2,7 @@
   pkgs = hackage:
     {
       packages = {
-        "warp".revision = (((hackage."warp")."3.3.2").revisions).default;
+        "warp".revision = (((hackage."warp")."3.3.4").revisions).default;
         "warp".flags.allow-sendfilefd = true;
         "warp".flags.network-bytestring = false;
         "warp".flags.warp-debug = false;
@@ -55,6 +55,7 @@
         "unliftio".revision = (((hackage."unliftio")."0.2.12").revisions).default;
         "unix".revision = (((hackage."unix")."2.7.2.2").revisions).default;
         "mtl".revision = (((hackage."mtl")."2.2.2").revisions).default;
+        "lifted-async".revision = (((hackage."lifted-async")."0.10.0.4").revisions).default;
         "network-uri".revision = (((hackage."network-uri")."2.6.1.0").revisions).default;
         "asn1-parse".revision = (((hackage."asn1-parse")."0.9.5").revisions).default;
         "zlib".revision = (((hackage."zlib")."0.6.2.1").revisions).default;
@@ -63,7 +64,7 @@
         "rts".revision = (((hackage."rts")."1.0").revisions).default;
         "mmorph".revision = (((hackage."mmorph")."1.1.3").revisions).default;
         "easy-file".revision = (((hackage."easy-file")."0.2.2").revisions).default;
-        "github".revision = (((hackage."github")."0.22").revisions).default;
+        "github".revision = (((hackage."github")."0.23").revisions).default;
         "github".flags.openssl = false;
         "cryptonite".revision = (((hackage."cryptonite")."0.26").revisions).default;
         "cryptonite".flags.support_sse = false;
@@ -81,9 +82,12 @@
         "safe-exceptions".revision = (((hackage."safe-exceptions")."0.1.7.0").revisions).default;
         "adjunctions".revision = (((hackage."adjunctions")."4.4").revisions).default;
         "invariant".revision = (((hackage."invariant")."0.5.3").revisions).default;
+        "enclosed-exceptions".revision = (((hackage."enclosed-exceptions")."1.0.3").revisions).default;
         "pem".revision = (((hackage."pem")."0.2.4").revisions).default;
         "http-api-data".revision = (((hackage."http-api-data")."0.4.1").revisions).default;
         "http-api-data".flags.use-text-show = false;
+        "megaparsec".revision = (((hackage."megaparsec")."8.0.0").revisions).default;
+        "megaparsec".flags.dev = false;
         "universum".revision = (((hackage."universum")."1.6.0").revisions).default;
         "distributive".revision = (((hackage."distributive")."0.6.1").revisions).default;
         "distributive".flags.semigroups = true;
@@ -116,6 +120,7 @@
         "dlist".revision = (((hackage."dlist")."0.8.0.7").revisions).default;
         "conduit".revision = (((hackage."conduit")."1.3.1.1").revisions).default;
         "x509-store".revision = (((hackage."x509-store")."1.6.7").revisions).default;
+        "constraints".revision = (((hackage."constraints")."0.11.2").revisions).default;
         "semigroups".revision = (((hackage."semigroups")."0.19.1").revisions).default;
         "semigroups".flags.bytestring = true;
         "semigroups".flags.unordered-containers = true;
@@ -130,12 +135,13 @@
         "semigroups".flags.template-haskell = true;
         "vector-instances".revision = (((hackage."vector-instances")."3.4").revisions).default;
         "vector-instances".flags.hashable = true;
+        "lifted-base".revision = (((hackage."lifted-base")."0.2.3.12").revisions).default;
         "parsec".revision = (((hackage."parsec")."3.1.13.0").revisions).default;
         "http-media".revision = (((hackage."http-media")."0.8.0.0").revisions).default;
         "hsc2hs".revision = (((hackage."hsc2hs")."0.68.6").revisions).default;
         "hsc2hs".flags.in-ghc-tree = false;
         "directory".revision = (((hackage."directory")."1.3.3.0").revisions).default;
-        "yaml".revision = (((hackage."yaml")."0.11.1.2").revisions).default;
+        "yaml".revision = (((hackage."yaml")."0.11.2.0").revisions).default;
         "yaml".flags.no-exe = true;
         "yaml".flags.no-examples = true;
         "transformers-compat".revision = (((hackage."transformers-compat")."0.6.5").revisions).default;
@@ -146,9 +152,9 @@
         "transformers-compat".flags.mtl = true;
         "transformers-compat".flags.four = false;
         "transformers-compat".flags.three = false;
-        "hpack".revision = (((hackage."hpack")."0.32.0").revisions).default;
+        "hpack".revision = (((hackage."hpack")."0.33.0").revisions).default;
         "template-haskell".revision = (((hackage."template-haskell")."2.14.0.0").revisions).default;
-        "mono-traversable".revision = (((hackage."mono-traversable")."1.0.12.0").revisions).default;
+        "mono-traversable".revision = (((hackage."mono-traversable")."1.0.13.0").revisions).default;
         "psqueues".revision = (((hackage."psqueues")."0.2.7.2").revisions).default;
         "vector".revision = (((hackage."vector")."0.12.0.3").revisions).default;
         "vector".flags.unsafechecks = false;
@@ -159,14 +165,14 @@
         "profunctors".revision = (((hackage."profunctors")."5.5").revisions).default;
         "safe".revision = (((hackage."safe")."0.3.17").revisions).default;
         "blaze-builder".revision = (((hackage."blaze-builder")."0.4.1.0").revisions).default;
-        "base-compat".revision = (((hackage."base-compat")."0.10.5").revisions).default;
+        "base-compat".revision = (((hackage."base-compat")."0.11.0").revisions).default;
         "autoexporter".revision = (((hackage."autoexporter")."1.1.14").revisions).default;
         "time-compat".revision = (((hackage."time-compat")."1.9.2.2").revisions).default;
         "time-compat".flags.old-locale = false;
         "deepseq-generics".revision = (((hackage."deepseq-generics")."0.2.0.0").revisions).default;
         "x509-system".revision = (((hackage."x509-system")."1.6.6").revisions).default;
         "keys".revision = (((hackage."keys")."3.12.2").revisions).default;
-        "ansi-terminal".revision = (((hackage."ansi-terminal")."0.10").revisions).default;
+        "ansi-terminal".revision = (((hackage."ansi-terminal")."0.10.1").revisions).default;
         "ansi-terminal".flags.example = false;
         "vector-binary-instances".revision = (((hackage."vector-binary-instances")."0.2.5.1").revisions).default;
         "tagged".revision = (((hackage."tagged")."0.8.6").revisions).default;
@@ -183,6 +189,9 @@
         "streaming-commons".revision = (((hackage."streaming-commons")."0.2.1.1").revisions).default;
         "streaming-commons".flags.use-bytestring-builder = false;
         "text-binary".revision = (((hackage."text-binary")."0.2.1.1").revisions).default;
+        "shelly".revision = (((hackage."shelly")."1.9.0").revisions).default;
+        "shelly".flags.build-examples = false;
+        "shelly".flags.lifted = false;
         "bytestring".revision = (((hackage."bytestring")."0.10.8.2").revisions).default;
         "ansi-wl-pprint".revision = (((hackage."ansi-wl-pprint")."0.6.9").revisions).default;
         "ansi-wl-pprint".flags.example = false;
@@ -205,6 +214,7 @@
         "contravariant".flags.statevar = true;
         "iso8601-time".revision = (((hackage."iso8601-time")."0.1.5").revisions).default;
         "iso8601-time".flags.new-time = true;
+        "type-equality".revision = (((hackage."type-equality")."1").revisions).default;
         "pointed".revision = (((hackage."pointed")."5.0.1").revisions).default;
         "pointed".flags.semigroupoids = true;
         "pointed".flags.stm = true;
@@ -215,7 +225,9 @@
         "pointed".flags.tagged = true;
         "pointed".flags.containers = true;
         "pointed".flags.transformers = true;
-        "blaze-markup".revision = (((hackage."blaze-markup")."0.8.2.2").revisions).default;
+        "parser-combinators".revision = (((hackage."parser-combinators")."1.2.0").revisions).default;
+        "parser-combinators".flags.dev = false;
+        "blaze-markup".revision = (((hackage."blaze-markup")."0.8.2.3").revisions).default;
         "text".revision = (((hackage."text")."1.2.3.1").revisions).default;
         "Cabal".revision = (((hackage."Cabal")."2.4.0.1").revisions).default;
         "unordered-containers".revision = (((hackage."unordered-containers")."0.2.10.0").revisions).default;
@@ -248,7 +260,7 @@
         "wai-extra".flags.build-example = false;
         "attoparsec".revision = (((hackage."attoparsec")."0.13.2.3").revisions).default;
         "attoparsec".flags.developer = false;
-        "blaze-html".revision = (((hackage."blaze-html")."0.9.1.1").revisions).default;
+        "blaze-html".revision = (((hackage."blaze-html")."0.9.1.2").revisions).default;
         "infer-license".revision = (((hackage."infer-license")."0.2.0").revisions).default;
         "binary-instances".revision = (((hackage."binary-instances")."1").revisions).default;
         "colour".revision = (((hackage."colour")."2.3.5").revisions).default;
@@ -266,19 +278,19 @@
         "unix-compat".flags.old-time = false;
         "monad-control".revision = (((hackage."monad-control")."1.0.2.3").revisions).default;
         "process".revision = (((hackage."process")."1.6.5.0").revisions).default;
-        "tls".revision = (((hackage."tls")."1.5.1").revisions).default;
+        "tls".revision = (((hackage."tls")."1.5.2").revisions).default;
         "tls".flags.compat = true;
         "tls".flags.network = true;
         "tls".flags.hans = false;
         "kan-extensions".revision = (((hackage."kan-extensions")."5.2").revisions).default;
-        "wai-logger".revision = (((hackage."wai-logger")."2.3.5").revisions).default;
+        "wai-logger".revision = (((hackage."wai-logger")."2.3.6").revisions).default;
         "microlens-mtl".revision = (((hackage."microlens-mtl")."0.2.0.1").revisions).default;
-        "libyaml".revision = (((hackage."libyaml")."0.1.1.0").revisions).default;
+        "libyaml".revision = (((hackage."libyaml")."0.1.1.1").revisions).default;
         "libyaml".flags.system-libyaml = false;
         "libyaml".flags.no-unicode = false;
         "resourcet".revision = (((hackage."resourcet")."1.2.2").revisions).default;
         "pretty".revision = (((hackage."pretty")."1.1.3.6").revisions).default;
-        "cabal-doctest".revision = (((hackage."cabal-doctest")."1.0.7").revisions).default;
+        "cabal-doctest".revision = (((hackage."cabal-doctest")."1.0.8").revisions).default;
         "Glob".revision = (((hackage."Glob")."0.10.0").revisions).default;
         "microlens".revision = (((hackage."microlens")."0.4.11.2").revisions).default;
         "aeson".revision = (((hackage."aeson")."1.4.5.0").revisions).default;
@@ -300,20 +312,12 @@
         "memory".flags.support_basement = true;
         "memory".flags.support_foundation = true;
         "memory".flags.support_deepseq = true;
-        "fast-logger".revision = (((hackage."fast-logger")."2.4.17").revisions).default;
+        "fast-logger".revision = (((hackage."fast-logger")."3.0.0").revisions).default;
         "bsb-http-chunked".revision = (((hackage."bsb-http-chunked")."0.0.0.4").revisions).default;
         "array".revision = (((hackage."array")."0.5.3.0").revisions).default;
-        "simple-sendfile".revision = (((hackage."simple-sendfile")."0.2.28").revisions).default;
+        "simple-sendfile".revision = (((hackage."simple-sendfile")."0.2.30").revisions).default;
         "simple-sendfile".flags.allow-bsd = true;
         "integer-gmp".revision = (((hackage."integer-gmp")."1.0.2.0").revisions).default;
-        "megaparsec".revision = (((hackage."megaparsec")."7.0.5").revisions).default;
-        "parser-combinators".revision = (((hackage."parser-combinators")."1.2.0").revisions).default;
-        "shelly".revision = (((hackage."shelly")."1.9.0").revisions).default;
-        "lifted-base".revision = (((hackage."lifted-base")."0.2.3.12").revisions).default;
-        "lifted-async".revision = (((hackage."lifted-async")."0.10.0.4").revisions).default;
-        "constraints".revision = (((hackage."constraints")."0.11.2").revisions).default;
-        "type-equality".revision = (((hackage."type-equality")."1").revisions).default;
-        "enclosed-exceptions".revision = (((hackage."enclosed-exceptions")."1.0.3").revisions).default;
         };
       compiler = {
         version = "8.6.5";
@@ -327,7 +331,6 @@
           "rts" = "1.0";
           "deepseq" = "1.4.4.0";
           "parsec" = "3.1.13.0";
-          "megaparsec" = "7.0.5";
           "directory" = "1.3.3.0";
           "template-haskell" = "2.14.0.0";
           "containers" = "0.6.0.1";
@@ -338,18 +341,11 @@
           "time" = "1.8.0.2";
           "transformers" = "0.5.6.2";
           "filepath" = "1.4.2.1";
-          "parser-combinators" = "1.2.0";
           "process" = "1.6.5.0";
           "pretty" = "1.1.3.6";
           "ghc-boot-th" = "8.6.5";
           "array" = "0.5.3.0";
           "integer-gmp" = "1.0.2.0";
-          "shelly" = "1.9.0";
-          "lifted-base" = "0.2.3.12";
-          "lifted-async" = "0.10.0.4";
-          "constraints" = "0.11.2";
-          "type-equality" = "1";
-          "enclosed-exceptions" = "1.0.3";
           };
         };
       };
@@ -361,4 +357,14 @@
         loot-base = ./.plan.nix/loot-base.nix;
         };
       };
+  modules = [
+    ({ lib, ... }:
+      {
+        packages = {
+          "nixfmt-bot" = { flags = {}; };
+          "loot-prelude" = { flags = {}; };
+          "loot-base" = { flags = {}; };
+          };
+        })
+    ];
   }

@@ -52,6 +52,7 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
       synopsis = "";
       description = "";
       buildType = "Simple";
+      isLocal = true;
       };
     components = {
       "library" = {
