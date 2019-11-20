@@ -54,7 +54,6 @@ default-extensions:
 dependencies:
 - base-noprelude >= 4.9 && < 5
 - bytestring
-- loot-prelude
 - universum
 - microlens-platform
 
