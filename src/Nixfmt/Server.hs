@@ -6,6 +6,7 @@ module Nixfmt.Server
        , runServer
        ) where
 
+import Universum
 
 import Network.Wai (Application)
 import Servant.Server (Context (..), serveWithContext)

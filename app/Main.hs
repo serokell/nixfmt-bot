@@ -1,5 +1,7 @@
 module Main where
 
+import Universum
+
 import qualified Data.ByteString.Char8 as C8
 import System.Environment (lookupEnv)
 import Text.Read (read)

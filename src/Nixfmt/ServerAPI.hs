@@ -3,6 +3,8 @@ module Nixfmt.ServerAPI
        , NixfmtWebhooks (..)
        ) where
 
+import Universum
+
 import GitHub.Data.Webhooks.Events (IssueCommentEvent (..))
 import Servant.API.Generic ((:-), AsApi, ToServant)
 import Servant.API (JSON, Post, (:>))

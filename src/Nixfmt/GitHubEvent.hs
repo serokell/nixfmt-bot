@@ -5,6 +5,7 @@ module Nixfmt.GitHubEvent
        , isCreatedEvent
        ) where
 
+import Universum
 import qualified Data.Text as T
 import GitHub.Data.Webhooks.Events  (IssueCommentEvent (..), IssueCommentEventAction (..))
 import GitHub.Data.Webhooks.Payload (getUrl, HookIssue (..))

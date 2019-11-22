@@ -2,7 +2,7 @@
   pkgs = hackage:
     {
       packages = {
-        "warp".revision = (((hackage."warp")."3.3.4").revisions).default;
+        "warp".revision = (((hackage."warp")."3.3.3").revisions).default;
         "warp".flags.allow-sendfilefd = true;
         "warp".flags.network-bytestring = false;
         "warp".flags.warp-debug = false;
@@ -22,6 +22,7 @@
         "byteorder".revision = (((hackage."byteorder")."1.0.4").revisions).default;
         "singleton-bool".revision = (((hackage."singleton-bool")."0.1.5").revisions).default;
         "free".revision = (((hackage."free")."5.1.2").revisions).default;
+        "tf-random".revision = (((hackage."tf-random")."0.5").revisions).default;
         "cereal".revision = (((hackage."cereal")."0.5.8.1").revisions).default;
         "cereal".flags.bytestring-builder = false;
         "exceptions".revision = (((hackage."exceptions")."0.10.3").revisions).default;
@@ -64,8 +65,6 @@
         "rts".revision = (((hackage."rts")."1.0").revisions).default;
         "mmorph".revision = (((hackage."mmorph")."1.1.3").revisions).default;
         "easy-file".revision = (((hackage."easy-file")."0.2.2").revisions).default;
-        "github".revision = (((hackage."github")."0.23").revisions).default;
-        "github".flags.openssl = false;
         "cryptonite".revision = (((hackage."cryptonite")."0.26").revisions).default;
         "cryptonite".flags.support_sse = false;
         "cryptonite".flags.integer-gmp = true;
@@ -86,7 +85,7 @@
         "pem".revision = (((hackage."pem")."0.2.4").revisions).default;
         "http-api-data".revision = (((hackage."http-api-data")."0.4.1").revisions).default;
         "http-api-data".flags.use-text-show = false;
-        "megaparsec".revision = (((hackage."megaparsec")."8.0.0").revisions).default;
+        "megaparsec".revision = (((hackage."megaparsec")."7.0.5").revisions).default;
         "megaparsec".flags.dev = false;
         "universum".revision = (((hackage."universum")."1.6.0").revisions).default;
         "distributive".revision = (((hackage."distributive")."0.6.1").revisions).default;
@@ -100,8 +99,7 @@
         "scientific".flags.integer-simple = false;
         "scientific".flags.bytestring-builder = false;
         "time-manager".revision = (((hackage."time-manager")."0.0.0").revisions).default;
-        "tasty".revision = (((hackage."tasty")."1.2.3").revisions).default;
-        "tasty".flags.clock = true;
+        "hspec-discover".revision = (((hackage."hspec-discover")."2.7.1").revisions).default;
         "deepseq".revision = (((hackage."deepseq")."1.4.4.0").revisions).default;
         "errors".revision = (((hackage."errors")."2.3.0").revisions).default;
         "random".revision = (((hackage."random")."1.1").revisions).default;
@@ -133,6 +131,7 @@
         "semigroups".flags.deepseq = true;
         "semigroups".flags.bytestring-builder = false;
         "semigroups".flags.template-haskell = true;
+        "HUnit".revision = (((hackage."HUnit")."1.6.0.0").revisions).default;
         "vector-instances".revision = (((hackage."vector-instances")."3.4").revisions).default;
         "vector-instances".flags.hashable = true;
         "lifted-base".revision = (((hackage."lifted-base")."0.2.3.12").revisions).default;
@@ -141,7 +140,7 @@
         "hsc2hs".revision = (((hackage."hsc2hs")."0.68.6").revisions).default;
         "hsc2hs".flags.in-ghc-tree = false;
         "directory".revision = (((hackage."directory")."1.3.3.0").revisions).default;
-        "yaml".revision = (((hackage."yaml")."0.11.2.0").revisions).default;
+        "yaml".revision = (((hackage."yaml")."0.11.1.2").revisions).default;
         "yaml".flags.no-exe = true;
         "yaml".flags.no-examples = true;
         "transformers-compat".revision = (((hackage."transformers-compat")."0.6.5").revisions).default;
@@ -154,6 +153,7 @@
         "transformers-compat".flags.three = false;
         "hpack".revision = (((hackage."hpack")."0.33.0").revisions).default;
         "template-haskell".revision = (((hackage."template-haskell")."2.14.0.0").revisions).default;
+        "hspec-expectations".revision = (((hackage."hspec-expectations")."0.8.2").revisions).default;
         "mono-traversable".revision = (((hackage."mono-traversable")."1.0.13.0").revisions).default;
         "psqueues".revision = (((hackage."psqueues")."0.2.7.2").revisions).default;
         "vector".revision = (((hackage."vector")."0.12.0.3").revisions).default;
@@ -161,6 +161,7 @@
         "vector".flags.internalchecks = false;
         "vector".flags.wall = false;
         "vector".flags.boundschecks = true;
+        "call-stack".revision = (((hackage."call-stack")."0.2.0").revisions).default;
         "primitive".revision = (((hackage."primitive")."0.7.0.0").revisions).default;
         "profunctors".revision = (((hackage."profunctors")."5.5").revisions).default;
         "safe".revision = (((hackage."safe")."0.3.17").revisions).default;
@@ -198,11 +199,9 @@
         "microlens-th".revision = (((hackage."microlens-th")."0.4.3.2").revisions).default;
         "wai".revision = (((hackage."wai")."3.2.2.1").revisions).default;
         "basement".revision = (((hackage."basement")."0.0.11").revisions).default;
+        "setenv".revision = (((hackage."setenv")."0.1.1.3").revisions).default;
         "cryptohash-sha1".revision = (((hackage."cryptohash-sha1")."0.11.100.1").revisions).default;
         "old-locale".revision = (((hackage."old-locale")."1.0.0.7").revisions).default;
-        "wcwidth".revision = (((hackage."wcwidth")."0.0.2").revisions).default;
-        "wcwidth".flags.split-base = true;
-        "wcwidth".flags.cli = false;
         "StateVar".revision = (((hackage."StateVar")."1.2").revisions).default;
         "vault".revision = (((hackage."vault")."0.3.1.3").revisions).default;
         "vault".flags.useghc = true;
@@ -233,12 +232,12 @@
         "unordered-containers".revision = (((hackage."unordered-containers")."0.2.10.0").revisions).default;
         "unordered-containers".flags.debug = false;
         "base64-bytestring".revision = (((hackage."base64-bytestring")."1.0.0.2").revisions).default;
-        "tasty-discover".revision = (((hackage."tasty-discover")."4.2.1").revisions).default;
         "base".revision = (((hackage."base")."4.12.0.0").revisions).default;
         "comonad".revision = (((hackage."comonad")."5.0.5").revisions).default;
         "comonad".flags.distributive = true;
         "comonad".flags.test-doctests = true;
         "comonad".flags.containers = true;
+        "hspec".revision = (((hackage."hspec")."2.7.1").revisions).default;
         "time".revision = (((hackage."time")."1.8.0.2").revisions).default;
         "data-default-class".revision = (((hackage."data-default-class")."0.1.2.0").revisions).default;
         "base16-bytestring".revision = (((hackage."base16-bytestring")."0.1.1.6").revisions).default;
@@ -256,6 +255,7 @@
         "hashable".flags.integer-gmp = true;
         "hashable".flags.sse41 = false;
         "hashable".flags.examples = false;
+        "quickcheck-io".revision = (((hackage."quickcheck-io")."0.2.0").revisions).default;
         "wai-extra".revision = (((hackage."wai-extra")."3.0.28").revisions).default;
         "wai-extra".flags.build-example = false;
         "attoparsec".revision = (((hackage."attoparsec")."0.13.2.3").revisions).default;
@@ -273,7 +273,7 @@
         "auto-update".revision = (((hackage."auto-update")."0.1.6").revisions).default;
         "asn1-types".revision = (((hackage."asn1-types")."0.3.3").revisions).default;
         "aeson-options".revision = (((hackage."aeson-options")."0.1.0").revisions).default;
-        "unbounded-delays".revision = (((hackage."unbounded-delays")."0.1.1.0").revisions).default;
+        "hspec-core".revision = (((hackage."hspec-core")."2.7.1").revisions).default;
         "unix-compat".revision = (((hackage."unix-compat")."0.5.2").revisions).default;
         "unix-compat".flags.old-time = false;
         "monad-control".revision = (((hackage."monad-control")."1.0.2.3").revisions).default;
@@ -285,7 +285,7 @@
         "kan-extensions".revision = (((hackage."kan-extensions")."5.2").revisions).default;
         "wai-logger".revision = (((hackage."wai-logger")."2.3.6").revisions).default;
         "microlens-mtl".revision = (((hackage."microlens-mtl")."0.2.0.1").revisions).default;
-        "libyaml".revision = (((hackage."libyaml")."0.1.1.1").revisions).default;
+        "libyaml".revision = (((hackage."libyaml")."0.1.1.0").revisions).default;
         "libyaml".flags.system-libyaml = false;
         "libyaml".flags.no-unicode = false;
         "resourcet".revision = (((hackage."resourcet")."1.2.2").revisions).default;
@@ -353,8 +353,7 @@
     {
       packages = {
         nixfmt-bot = ./.plan.nix/nixfmt-bot.nix;
-        loot-prelude = ./.plan.nix/loot-prelude.nix;
-        loot-base = ./.plan.nix/loot-base.nix;
+        github = ./.plan.nix/github.nix;
         };
       };
   modules = [
@@ -362,8 +361,7 @@
       {
         packages = {
           "nixfmt-bot" = { flags = {}; };
-          "loot-prelude" = { flags = {}; };
-          "loot-base" = { flags = {}; };
+          "github" = { flags = { "openssl" = lib.mkOverride 900 false; }; };
           };
         })
     ];
