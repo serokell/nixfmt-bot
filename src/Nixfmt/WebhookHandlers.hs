@@ -2,6 +2,8 @@ module Nixfmt.WebhookHandlers
        ( nixfmtHandlers
        ) where
 
+import Universum
+
 import GitHub.Data.Webhooks.Events  (IssueCommentEvent (..))
 import GitHub.Data.Webhooks.Payload  (HookIssueComment (..), whIssueHtmlUrl, getUrl) -- whIssueHtmlUrl) --, getUrl)
 import Servant.GitHub.Webhook (RepoWebhookEvent (..))
@@ -38,14 +40,17 @@ onIssueCommentEvent mAuth _ (_, event@IssueCommentEvent{..})
         putTextLn $ "Issue PR Url: " <> getUrl (whIssueHtmlUrl evIssueCommentIssue)
         let url = getUrl (whIssueHtmlUrl evIssueCommentIssue)
         ePullReq <- liftIO $ getPRInfo mAuth (URL url) -- (whIssueHtmlUrl evIssueCommentIssue)
-        _ <- liftIO $ async $ handle (\(e :: SomeException) -> (putTextLn $ show e) >> throw e) $ do
-                (baseBranch, newBranch, owner, repo) <- case ePullReq of
+        _ <- liftIO $ async $ handle (\(e :: SomeException) -> (putTextLn $ show e) >> throw e) $
+           do result <- case ePullReq of
                         Left err -> error $ show err
                         Right pullReq -> processPullRequest pullReq mAuth
-                makePRResult <- makeNewPR mAuth baseBranch newBranch owner repo
-                case makePRResult of
-                       Left err -> putStrLn @String $ show err
-                       Right pr -> let (IssueNumber prNumber) = pullRequestNumber pr
-                                   in putTextLn $ "Made pull request with number " <> (show prNumber)
+              case result of
+                        Right (baseBranch, owner, repo) -> do
+                          makePRResult <- makeNewPR mAuth baseBranch owner repo
+                          case makePRResult of
+                                 Left err -> putStrLn @String $ show err
+                                 Right pr -> let (IssueNumber prNumber) = pullRequestNumber pr
+                                             in putTextLn $ "Made pull request with number " <> (show prNumber)
+                        Left NothingWasChanged -> liftIO $ putTextLn "There are no changed *.nix files."
         return ()
     | otherwise  = putTextLn "Event has been skipped"

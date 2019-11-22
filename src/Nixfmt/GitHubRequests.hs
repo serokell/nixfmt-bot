@@ -5,6 +5,8 @@ module Nixfmt.GitHubRequests
        , makeNewPR
        ) where
 
+import Universum
+
 import GitHub.Endpoints.PullRequests
   ( Auth(..), CreatePullRequest(..), Error(..),IssueNumber(..)
   , Owner(..), PullRequest(..), Repo(..), URL(..), createPullRequest, pullRequest')
@@ -13,6 +15,8 @@ import GitHub.Data.Name (Name(..))
 import Text.Megaparsec hiding (many)
 import Text.Megaparsec.Char.Lexer (decimal)
 import Text.Megaparsec.Char (char, string)
+
+import qualified Data.ByteString.Char8 as C8
 
 type Parser = Parsec Void Text
 type UserName = Text
@@ -33,15 +37,16 @@ getPRInfo mAuth (URL url) = case runParser parsePRUrl "" url of
 makeNewPR ::
      Maybe Auth
   -> Text
-  -> Text
   -> Name Owner
   -> Name Repo
   -> IO (Either Error PullRequest)
-makeNewPR mAuth baseBranch newBranch owner repo =
-    let createPR = CreatePullRequest pRTitle pRBody newBranch baseBranch
-    in case mAuth of
-            Just auth -> createPullRequest auth owner repo createPR
-            Nothing   -> error "Only basic auth method is supported now"
+makeNewPR mAuth baseBranch owner repo = case mAuth of
+            Just auth@(BasicAuth botName _) ->
+              let newBranchName = (toText $ C8.unpack botName) <> ":" <> baseBranch
+                  createPR = CreatePullRequest pRTitle pRBody newBranchName baseBranch
+              in  createPullRequest auth owner repo createPR
+            Just _    -> error "Only basic auth method is supported now"
+            Nothing   -> error "Credentials should be provided"
 
 parsePRUrl :: Parser (RepoName, UserName, Int)
 parsePRUrl = do

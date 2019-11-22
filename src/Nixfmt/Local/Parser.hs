@@ -6,6 +6,8 @@ module Nixfmt.Local.Parser
        , parseFormatted
        , replaceOldFragments) where
 
+import Universum
+
 import Text.Megaparsec (Parsec, anySingle, eof, manyTill, noneOf)
 import qualified Text.Megaparsec as M
 import Text.Megaparsec.Char.Lexer (decimal)

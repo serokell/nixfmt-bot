@@ -3,6 +3,8 @@ module Nixfmt.GitHubKey
        , gitHubKey
        ) where
 
+import Universum
+
 import Servant.Server (HasContextEntry (..), Context (..))
 import qualified Servant.GitHub.Webhook as SGH (GitHubKey, gitHubKey)
 import qualified Data.ByteString  as BS
